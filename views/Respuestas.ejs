@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style type="text/css">
+    ul.tabs{
+      flex-direction: column;
+      height: 100%;
+      float: left;
+      width: 100%;
+
+    }
+  </style>
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+
+<body>
+ <div class="row">
+  <div class="col s2">
+    <ul class="tabs">
+      <li class="tab col s12"><a class="active" href="#parte1"></a></li>
+    </ul>
+  </div>
+  <div class="col s10">
+    <div id="parte1" class="col s12">
+      <table id="table_id" class="striped centered responsive-table">
+        <thead>
+          <tr>
+            <th>Preguntas</th>
+            <th>Sí</th>
+            <th>Suficiente</th>
+            <th>Mas o menos</th>
+            <th>No</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+        </tbody>
+      </table>
+    </div>
+
+    <div id="parte2" class="col s12">Test 2</div>
+  
+    <div id="parte3" class="col s12">Test 3</div>
+  
+    <div id="parte4" class="col s12">Test 4</div>
+
+    <div id="parte5" class="col s12">Test 4</div>
+
+    <div id="parte6" class="col s12">Test 4</div>
+
+    <div id="parte7" class="col s12">Test 4</div>
+
+    <div id="parte8" class="col s12">Test 4</div>
+
+  </div>
+  
+</div>
+
+<!--JavaScript at end of body for optimized loading-->
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+<script type="text/javascript">
+   $(document).ready(function(){
+    $('.tabs').tabs();
+  });
+
+</script>
+</body>
+</html>
