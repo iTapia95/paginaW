@@ -6,27 +6,26 @@ const path = require('path');
 const BodyParser = require('body-parser');
 var flash = require('connect-flash');
 var session = require ('express-session');
-const routes = require('./routes/web');
+//const routes = require('./routes/web');
 var passport = require ('passport');
 
-// require('./passport/passport')(passport);
+//require('./passport/passport')(passport);
 
 const app = express();
 
-//Cambio para ver que pex
-
-//
+//session
 app.use(session({
   secret: 'claveSecretaIDQ',
   resave: false,
   saveUninitialized: false
 }));
+//passport
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 app.use(flash());
 
-//session
-app.use(passport.initialize());
-app.use(passport.session());
 
 
 //starting the server
@@ -35,18 +34,25 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 //middleware
-app.use((req, res, next) =>{
-  console.log(`${req.url} -${req.method}`);
-  next();
-});
+// app.use((req, res, next) =>{
+//   console.log(`${req.url} -${req.method}`);
+//   next();
+// });
 app.use(BodyParser.json());
 app.use(BodyParser.urlencoded({extended: false}));
-app.use(routes);
+//
+var initPassport = require('./passport/passport');
+initPassport(passport);
+
+var routes = require('./routes/web')(passport);
+
+app.use('/', routes);
+//app.use(routes);
 
 //static files
 app.use(express.static(path.join(__dirname, 'public')));
 
-//start the resver
+//start the server
 app.listen(app.get('port'), () => {
   console.log('Server on port ', app.get('port'));
 });
