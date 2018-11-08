@@ -1,5 +1,5 @@
 const dbConnection = require('../config/BDConnection');
-var usuario ='';
+
 
 const lista = (req, res)=>{
 	const connection = dbConnection();
@@ -10,23 +10,35 @@ const lista = (req, res)=>{
 
 const reportsA = (req, res) => {
   	const connection = dbConnection();
-	connection.query('select * from encuesta', (err, result) => {
+		connection.query('select * from encuesta', (err, result) => {
       	res.render('ERAdmn',{
-			'usuario'  : usuario
+			'usuario'  : req.user.nombre
 		});
 	});
 }
 
-const regisR = (req, res) => {
+const registrarR = (req, res) => {
 	const connection = dbConnection();
 	connection.query('select * from encuesta', (err, result) => {
 		res.render('registrarR', {
-			'usuario' : usuario
+			'usuario' : req.user.nombre,
+			'encuestas': result
+		});
+	});
+}
+
+const crearE = (req, res) => {
+	const connection = dbConnection();
+	connection.query('select * from encuesta', (err, result) => {
+		res.render('crearE', {
+			'usuario' : req.user.nombre,
+			'encuestas': result
 		});
 	});
 }
 
 module.exports = {
 	reportsA,
-	regisR
+	registrarR,
+	crearE
 }
